@@ -1,0 +1,14 @@
+{
+  "name": "financial-life-game",
+  "version": "0.1.0",
+  "private": true,
+  "description": "理財人生 · 18→28（單頁網頁遊戲）",
+  "scripts": {
+    "dev": "python3 -m http.server 8123",
+    "bg": "node tools/make-bg.js",
+    "test": "node tests/run-tests.js"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.65.1"
+  }
+}
