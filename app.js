@@ -194,7 +194,7 @@
       '消費': 'cafe', '人情': 'cafe', '進修': 'campus', '稅務': 'office',
     },
     storeKey: 'fl_run_v1',
-    surveyUrl: '',      // ← 貼 Google Form 連結喺呢度
+    surveyUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSc3smTVXY90Z4-hDlSflJNnMEtZyS_6AuuPVRfZwGfzwbPGMA/viewform',
   };
 
   const MATRIX = [
