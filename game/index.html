@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-Hant-HK">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a1430">
+<title>理財人生 · 18 → 28</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="ink">
+<div id="bg"></div>
+<div id="glow"></div>
+
+<main id="app">
+
+  <!-- ① 開始頁 -->
+  <section class="screen" data-screen="title">
+    <button class="lang-btn" id="btn-lang" aria-label="Switch language">EN</button>
+    <div class="title-wrap">
+      <p class="kicker" data-i18n="kicker">香港 · 個人理財</p>
+      <h1 data-i18n="title">理財人生</h1>
+      <p class="sub" data-i18n="subtitle">同樣 18 歲，十年之後可以差十幾萬。</p>
+    </div>
+
+    <div class="facts">
+      <div class="fact">
+        <b data-i18n="fact1n">89%</b>
+        <span><span data-i18n="fact1">18–29 歲香港人有儲蓄習慣</span><i data-i18n="fact1src">存款保障委員會調查</i></span>
+      </div>
+      <div class="fact">
+        <b data-i18n="fact2n">5–8 千</b>
+        <span><span data-i18n="fact2">香港大學生每月生活費（港幣）</span><i data-i18n="fact2src">Bowtie · 2026</i></span>
+      </div>
+      <div class="fact">
+        <b data-i18n="fact3n">10 個</b>
+        <span><span data-i18n="fact3">由 18 歲到 28 歲，每年一個決定</span><i data-i18n="fact3src">每個決定都會改你嘅錢、健康、心情</i></span>
+      </div>
+    </div>
+
+    <div class="title-mid">
+      <div class="panel mini" id="title-card"></div>
+    </div>
+
+    <div class="diff" id="difficulty">
+      <button data-diff="easy" data-i18n="easy">輕鬆</button>
+      <button data-diff="normal" class="on" data-i18n="normal">普通</button>
+      <button data-diff="hard" data-i18n="hard">地獄</button>
+    </div>
+
+    <div class="stack">
+      <button class="btn primary" id="btn-start" data-i18n="start">開始人生</button>
+      <button class="btn ghost" id="btn-titles" data-i18n="titlesBtn">稱號</button>
+      <button class="btn ghost" id="btn-memory" data-i18n="memory">前世記錄</button>
+    </div>
+    <p class="hint" id="title-hint"></p>
+  </section>
+
+  <!-- ② 開局頁 -->
+  <section class="screen" data-screen="start">
+    <h2 class="screen-title" data-i18n="setup">開局檔案</h2>
+    <div class="panel">
+      <p class="big-name" id="start-name">18 歲香港學生</p>
+      <ul class="kv" id="start-kv"></ul>
+    </div>
+    <div class="stack">
+      <button class="btn primary" id="btn-enter" data-i18n="enter">入學</button>
+      <button class="btn ghost" id="btn-reroll" data-i18n="reroll">重新抽一次</button>
+    </div>
+    <p class="hint" data-i18n="setupHint">起點唔係你揀嘅，之後每一步係。</p>
+  </section>
+
+  <!-- ③ 事件 / 結果頁 -->
+  <section class="screen" data-screen="event">
+    <header class="hud">
+      <button class="back" id="btn-back" aria-label="返回上一步">←</button>
+      <div class="hud-mid">
+        <span class="hud-year" id="hud-year">第 1 年 · 18 歲</span>
+        <div class="dots" id="dots"></div>
+      </div>
+      <span class="hud-spacer"></span>
+    </header>
+
+    <div class="gauges">
+      <div class="gauge">
+        <span class="g-label" data-i18n="health">健康</span>
+        <div class="g-track"><i id="g-health"></i></div>
+        <span class="g-num" id="g-health-num">70</span>
+      </div>
+      <div class="gauge">
+        <span class="g-label" data-i18n="mood">心情</span>
+        <div class="g-track"><i id="g-mood"></i></div>
+        <span class="g-num" id="g-mood-num">70</span>
+      </div>
+    </div>
+
+    <div class="dialogue">
+      <div class="speaker" id="speaker">業主</div>
+      <span class="tag-badge" id="event-tag">住屋</span>
+      <p class="text" id="event-text"></p>
+    </div>
+
+    <div id="choices" class="choices"></div>
+
+    <div id="outcome" class="outcome" hidden>
+      <div class="deltas" id="deltas"></div>
+      <p class="result-text" id="result-text"></p>
+    </div>
+
+    <footer class="stats-bar">
+      <span><i data-i18n="money">資產</i> <b id="stat-money">HK$0</b></span>
+      <span><i data-i18n="score">分數</i> <b id="stat-score">0</b></span>
+      <span id="stat-year-wrap"><i data-i18n="year">第</i> <b id="stat-year">1</b><i data-i18n="yearOf">/10 年</i></span>
+    </footer>
+  </section>
+
+  <!-- ④ 年度結算 -->
+  <section class="screen" data-screen="ledger">
+    <h2 class="screen-title" id="ledger-title">第 1 年 · 年度結算</h2>
+    <div class="panel ledger">
+      <ul class="lines" id="ledger-lines"></ul>
+      <div class="net" id="ledger-net"></div>
+    </div>
+    <p class="hint" id="ledger-hint"></p>
+    <button class="btn primary" id="btn-ledger-next" data-i18n="nextYear">下一年</button>
+  </section>
+
+  <!-- ⑤ 結束頁 -->
+  <section class="screen" data-screen="ending">
+    <header class="hud">
+      <button class="back" id="btn-ending-back" aria-label="離開">←</button>
+      <div class="hud-mid"><span class="kicker" id="ending-kicker">28 歲</span></div>
+      <span class="hud-spacer"></span>
+    </header>
+    <div class="ending-art"><img id="ending-art" alt=""></div>
+    <h2 class="ending-title" id="ending-title">普通人</h2>
+    <p class="ending-desc" id="ending-desc"></p>
+    <p class="ending-lesson" id="ending-lesson"></p>
+    <div class="panel score-panel">
+      <ul class="kv" id="ending-kv"></ul>
+    </div>
+    <div class="unlock" id="unlock-box">
+      <p class="unlock-title" id="unlock-title"></p>
+      <button class="btn ghost" id="btn-ending-titles">
+        <span data-i18n="titlesBtn">稱號</span> <span id="unlock-count"></span>
+      </button>
+    </div>
+    <div class="stack row">
+      <button class="btn primary" id="btn-again" data-i18n="playAgain">再玩一局</button>
+      <button class="btn ghost" id="btn-again-memory" data-i18n="memory">前世記錄</button>
+    </div>
+    <p class="sub-title" data-i18n="shareCard">分享卡</p>
+    <div class="share-card">
+      <canvas id="share-canvas" width="1080" height="1350"></canvas>
+    </div>
+    <div class="stack row">
+      <button class="btn ghost" id="btn-download" data-i18n="download">下載圖片</button>
+      <button class="btn ghost" id="btn-copyshare" data-i18n="copy">複製文字</button>
+    </div>
+    <a class="btn primary survey-btn" id="btn-survey" href="#" target="_blank" rel="noopener" hidden data-i18n="survey">填問卷 · 30 秒</a>
+  </section>
+
+  <!-- ⑦ 稱號 -->
+  <section class="screen" data-screen="titles">
+    <header class="hud">
+      <button class="chip" id="btn-titles-back" data-i18n="back">返回</button>
+      <span class="hud-year" data-i18n="titlesBtn">稱號</span>
+      <span class="chip ghost-chip" id="titles-count">0 / 17</span>
+    </header>
+    <p class="mem-group" data-i18n="normalEndings">普通結局</p>
+    <ul class="titles" id="titles-normal"></ul>
+    <p class="mem-group" data-i18n="hiddenTitles">隱藏稱號</p>
+    <ul class="titles" id="titles-special"></ul>
+  </section>
+
+  <!-- ⑥ 記憶頁 -->
+  <section class="screen" data-screen="memory">
+    <header class="hud">
+      <button class="chip" id="btn-back-title" data-i18n="back">返回</button>
+      <span class="hud-year" data-i18n="memoryTitle">前世記錄</span>
+      <span class="chip ghost-chip" id="mem-total">0 局</span>
+    </header>
+    <h3 class="sub-title" data-i18n="lastTen">最近十局</h3>
+    <ul class="runs" id="mem-runs"></ul>
+
+    <button class="btn primary" id="btn-clear" hidden data-i18n="clear">清空記錄</button>
+  </section>
+
+</main>
+
+<!-- 遮罩提示 -->
+<div id="toast" class="toast" hidden></div>
+
+<script src="data/events.js"></script>
+<script src="data/events-en.js"></script>
+<script src="data/i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
