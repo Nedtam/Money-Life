@@ -5,7 +5,7 @@
 
 const SITE = {
   // 遊戲本體位置。本機預覽用相對路徑；部署後改成正式網址，例如：
-  // 'https://nedtam.github.io/Money-Life/'
+  // 'https://nedtam.github.io/life120/'
   gameUrl: 'https://nedtam.github.io/life120/',
   gameNewTab: true,
 };
